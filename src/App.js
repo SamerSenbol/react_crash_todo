@@ -10,7 +10,7 @@ export class App extends React.Component{
       {
         id:1,
         title:'Take out the trash',
-        completed: false
+        completed: true
       },
       {
         id:2,
