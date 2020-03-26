@@ -10,7 +10,7 @@ export class App extends React.Component{
       {
         id:1,
         title:'Take out the trash',
-        completed: true
+        completed: false
       },
       {
         id:2,
@@ -25,7 +25,12 @@ export class App extends React.Component{
     ]
   }
   markComplete = (id) => {
-    console.log(id)
+    this.setState({todos: this.state.todos.map(todo => {
+      if(todo.id === id){
+        todo.completed = !todo.completed
+      }
+      return todo;
+    }) });
   }
   render(){
     return(
