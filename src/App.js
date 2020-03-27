@@ -1,33 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import * as uuid from "uuid";
+import axios from 'axios';
 import './App.css';
 
 
 export class App extends React.Component{
 
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title:'Take out the trash',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title:'Dinner with wife',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title:'Meeting with boss',
-        completed: false
-      }
-    ]
+    todos: []
+  }
+
+  componentDidMount(){
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(res => this.setState({ todos: res.data}))
   }
 
   // Toggle Complete
